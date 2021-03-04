@@ -5,6 +5,8 @@ from sklearn.metrics import mean_squared_error
 from scipy.io import loadmat
 from typing import Tuple
 
+# Warm up to understand the github workflow
+
 def Scaling_Exponents(y_series: 'np.ndarray') -> Tuple['np.float64', 'np.float64']:
     '''
     Input- y_series: 1D numpy array of floats (time series) - Should not contain NaN values, Length should be greater than 100

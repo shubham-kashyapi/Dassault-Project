@@ -1,0 +1,24 @@
+The folder contains different versions of preprocessed data.
+
+Preprocessing steps:
+- Dropped NAs
+- Negtive values are not yet removed
+- All variable series for any particular case have same lengths
+- All series are reindexed such that they start from zeroth index.
+
+Each subfolder represents different version.
+1. Preprocessed data but includes case 38 and 50 ‎22 ‎June ‎2021_205024: 
+- CSV files segregated by variables - PSPCKL, PSPCKR, PSPCKOU, TBLDL, TBLDR, TBLDC, Altitde_ZP
+- Each CSV file contains 56 cases of the variable with which the file is named. The header corresponds to the original case id.
+- cases 38 and 50 are not removed
+
+2. Preprocessed data seg var_‎25 ‎June ‎2021_‏‎203953
+- CSV files segregated by variables - PSPCKL, PSPCKR, PSPCKOU, TBLDL, TBLDR, TBLDC, Altitde_ZP
+- Each CSV file contains 54 cases of the variable with which the file is named. The header corresponds to the original case id.
+- Does not contain 38th and 50th case as the altutude data is entirely missing for those cases. The case numbers however are as per the original dataset. While using be catious about the case ids (Need to skip ids 38 and 50 or their results should be shown as absent)
+- Useful when we must use altitude data eg. AR approach considering up-down dynamics
+
+3. Preprocessed_data_seg_by_vartype 13 ‎July ‎2021_‏‎225122
+- Three csv files segregated according to type of variable. for eg. file named 'Pressure_Preprocessed' contains preprocessed data for all the variables PSPCKL, PSPCKR, PSPCKOU.
+- cases 38 and 50 are excluded
+- each spreadsheet corresponds to different case id. That is sheet1 corresponds to case id 1. However, sheet38 corresponds to case id 39 and sheet 49 corresponds to case id 51 as cases 38 and 50 are excluded.

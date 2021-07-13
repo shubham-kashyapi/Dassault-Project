@@ -1,0 +1,7 @@
+Contains preprocessed data
+- Dropped NAs
+- All variable series for any particular case have same lengths
+- All series are reindexed such that they start from zeroth index.
+- Does not contain 38th and 50th case as the altutude data is entirely missing for those cases. The case numbers however are as per the original dataset.
+- Segregated by variables - PSPCKL, PSPCKR, PSPCKOU, TBLDL, TBLDR, TBLDC, Altitde_ZP
+- Each CSV file contains 54 cases of the variable with which the file is named. The header corresponds to the original case id.

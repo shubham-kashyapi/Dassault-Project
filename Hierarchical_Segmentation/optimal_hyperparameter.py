@@ -11,8 +11,12 @@ class AMethod:
         
     def get_elbow_point(self, xparams, yvals):
         '''
+        Parameters:
         xparams - 1D numpy array of hyperparameters (length > 2)
         yvals - 1D numpy array of dependent variables for regression (shape same as xparams)
+        
+        Returns:
+        Index of the elbow point
         '''
         self.xparams = MinMaxScaler().fit_transform(xparams.reshape(-1,1))         # Scaling to [0,1]
         self.yvals = MinMaxScaler().fit_transform(yvals.reshape(-1,1)).flatten()   # Scaling to [0,1]
@@ -36,6 +40,14 @@ class AMethod:
         
         
     def plot_elbow_curve(self, plot_title, x_variable, y_variable):
+        '''
+        Plots the elbow curve and highlights the elbow point
+        Parameters:
+        x_variable (str), y_variable (str): x and y labels for the elbow curve
+        
+        Returns:
+        None        
+        '''
         linopt1 = LinearRegression().fit(self.xparams[:self.opt_idx+1].reshape(-1,1), self.yvals[:self.opt_idx+1])
         linopt2 = LinearRegression().fit(self.xparams[self.opt_idx:].reshape(-1,1), self.yvals[self.opt_idx:])
         plt.figure()
@@ -50,6 +62,15 @@ class AMethod:
         return
     
     def write_to_csv(self, output_file_name, x_variable, y_variable):
+        '''
+        Stores the points on the elbow curve in a csv file
+        Parameters:
+        output_file_name (str): Name of the output file
+        x_variable (str), y_variable (str): x and y labels for the elbow curve
+        
+        Returns:
+        None        
+        '''
         xcoords, ycoords, colors, pts_sizes = [], [], [], []
         # Storing points for a scatter plot
         xcoords.extend(list(self.xparams.flatten()))

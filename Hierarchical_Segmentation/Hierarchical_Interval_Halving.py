@@ -21,6 +21,7 @@ class Hierarchical_Interval_Halving:
         xlabel (str), ylabel (str): X and Y labels for the plot
         min_window_len (int): Stopping condition for interval halving. Window is not split further if the length is lower than than value
         alpha_f_test (float): Alpha value for hypothesis test for goodness of fit
+        max_degree (int): Maximum degree of polynomial fit
         title (str): Title of the plot
         suppress_print (bool): If False, prints the segmentation at intermediate steps 
         

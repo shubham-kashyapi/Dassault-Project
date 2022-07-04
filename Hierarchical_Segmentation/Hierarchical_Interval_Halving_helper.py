@@ -19,13 +19,13 @@ plt.ioff()
 # Define functions to perform hyperparameter tuning and generate segmentation results
 #######################################################################################
 def hyperparam_tuning_var(time_series, series_name, var_data, curr_frac):
-    model = Hierarchical_Interval_Halving(noise_err = curr_frac*var_data, min_window_len = window_lens_tuning[0], degrees = [0,1,2], \
+    model = Hierarchical_Interval_Halving(noise_err = curr_frac*var_data, min_window_len = window_lens_tuning[0], max_degree = 2, \
                                       title = series_name, suppress_print = True, alpha_f_test = alpha_f_test_val)
     seg_count = model.train_model(time_series)
     return seg_count
     
 def hyperparam_tuning_window(time_series, series_name, var_data, curr_window, opt_frac):
-    model = Hierarchical_Interval_Halving(noise_err = opt_frac*var_data, min_window_len = int(curr_window), degrees = [0,1,2], \
+    model = Hierarchical_Interval_Halving(noise_err = opt_frac*var_data, min_window_len = int(curr_window), max_degree = 2, \
                                       title = series_name, suppress_print = True, alpha_f_test = alpha_f_test_val)
     seg_count = model.train_model(time_series)
     return seg_count
@@ -52,7 +52,7 @@ def segmentation_analysis(time_series, series_name):
     # Fitting the optimal model
     ###########################################
     model = Hierarchical_Interval_Halving(noise_err = opt_var_frac*err_data, ylabel = series_name.split('_')[-1], \
-                                      degrees = [0,1,2], min_window_len = opt_window_len, title = series_name, 
+                                      max_degree = 2, min_window_len = opt_window_len, title = series_name, 
                                       suppress_print = True, alpha_f_test = alpha_f_test_val)
     model.train_model(time_series)        
     

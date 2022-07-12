@@ -26,7 +26,7 @@ class Bottom_Up_Segmentation:
         self.__data_ts = data_ts
         self.__num_pts = data_ts.shape[0]
         break_pts = np.linspace(0, self.__num_pts, num = self.__num_windows+1, dtype = int)
-        self.__intervals = [[break_pts[i], break_pts[i+1]] for i in range(self.__num_windows)]
+        self.__intervals = [[int(break_pts[i]), int(break_pts[i+1])] for i in range(self.__num_windows)]
         self.__sse_vals = []
         
         for interval in self.__intervals:
@@ -36,7 +36,6 @@ class Bottom_Up_Segmentation:
         sse_vals1 = self.__sse_vals        
         while True:
             tot_sse = np.sum(sse_vals1)
-            #print(intervals, tot_sse)
             merged_intervals, merged_sse = [], []
             i = 0
             while i < len(self.__intervals)-1:
@@ -62,11 +61,13 @@ class Bottom_Up_Segmentation:
                 
             self.__intervals = merged_intervals
             sse_vals1 = merged_sse
-        
+            
+        self.__sse_vals = sse_vals1
+        return self.__intervals
         return
         
             
-    def plot_segmentation(self, ts_name):        
+    def plot_segmentation(self, ts_name, xlabel = '', ylabel = '', path = None):        
         plt.figure()
         plt.scatter(np.arange(self.__num_pts), self.__data_ts, s = 0.5)
         plt.axvline(x = 0, c = 'r', linewidth = 1)
@@ -74,7 +75,11 @@ class Bottom_Up_Segmentation:
             _, pred_vals = self.__evaluate_norm_SSE(interval[0], interval[1])
             plt.plot(np.arange(interval[0], interval[1]), pred_vals, c = 'k')
             plt.axvline(x = interval[1], c = 'r', linewidth = 1)
-        plt.title('{}: Lambda parameter = {}'.format(ts_name, self.__lambda_param))
+        plt.title('{}: Lambda parameter = {}\nSSE = {}'.format(ts_name, self.__lambda_param, np.sum(self.__sse_vals)))
+        plt.xlabel(xlabel)
+        plt.ylabel(ylabel)
+        if path is not None:
+            plt.savefig(path, dpi = 1000)
         plt.show()
         return
 

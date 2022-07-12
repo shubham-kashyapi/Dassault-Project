@@ -64,7 +64,6 @@ class Bottom_Up_Segmentation:
             
         self.__sse_vals = sse_vals1
         return self.__intervals
-        return
         
             
     def plot_segmentation(self, ts_name, xlabel = '', ylabel = '', path = None):        

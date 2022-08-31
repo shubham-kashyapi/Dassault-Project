@@ -8,7 +8,7 @@ from scipy.stats import t
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import sys
-from optimal_hyperparameter import AMethod
+from . import optimal_hyperparameter
 import time
 import os
 import json
@@ -48,7 +48,7 @@ def Interval_Halving_plots(df_data,save=False):
                                               title=colname, suppress_print=True)
             count_intervals[frac_ind] = model.train_model(tseries)
 
-        elbow_model_var = AMethod()
+        elbow_model_var = optimal_hyperparameter.AMethod()
         elbow_idx_var = elbow_model_var.get_elbow_point(var_fracs, count_intervals)
         opt_var_fraction = var_fracs[elbow_idx_var]
 
@@ -60,7 +60,7 @@ def Interval_Halving_plots(df_data,save=False):
                                               title = colname, suppress_print = True)
             count_intervals_window[ind_window] = model.train_model(tseries)  
 
-        elbow_model_window = AMethod()
+        elbow_model_window = optimal_hyperparameter.AMethod()
         elbow_idx_window = elbow_model_window.get_elbow_point(window_lens, count_intervals_window)
         opt_window = count_intervals_window[elbow_idx_window]
 

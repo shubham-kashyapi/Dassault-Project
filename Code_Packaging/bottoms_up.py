@@ -103,7 +103,7 @@ class Bottom_Up_Segmentation:
             self.__intervals = merged_intervals
             sse_vals1 = merged_sse
         
-        return
+        return self.__intervals
         
             
     def plot_segmentation(self, ts_name): 

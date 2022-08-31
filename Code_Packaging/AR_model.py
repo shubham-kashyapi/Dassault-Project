@@ -10,13 +10,14 @@ def AR_plots(Input_Data, Bench_Data, Ar_Order, fill_outlier):
     AR_plots(Input_Data, Bench_Data, Ar_Order, fill_outlier):
     
     parameters:
-    Input_Data
+
+    Input_Data = multi dimen
     
-    Bench_Data
+    Bench_Data 1d numpy
     
-     Ar_Order
+     Ar_Order int 
      
-     fill_outlier
+     fill_outlier boolean
     '''
     # Default parameters for AR model
     Mm_Fra = 0.1

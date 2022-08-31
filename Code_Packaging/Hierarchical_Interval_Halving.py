@@ -7,7 +7,7 @@ from scipy.stats import f
 from scipy.stats import t
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
-from optimal_hyperparameter import AMethod
+from . import optimal_hyperparameter
 import json
 import os
 
@@ -60,14 +60,14 @@ def HI_plots(df_data,alpha_val,save=False):
             count_segments_var = np.array([hyperparam_tuning_var(time_series, series_name, err_data, frac)
                                         for frac in var_fracs_tuning])
             
-            opt_var_frac = var_fracs_tuning[AMethod().get_elbow_point(var_fracs_tuning, count_segments_var)]
+            opt_var_frac = var_fracs_tuning[optimal_hyperparameter.AMethod().get_elbow_point(var_fracs_tuning, count_segments_var)]
             ###########################################
             # Parameter tuning for window length
             ###########################################          
             count_segments_window = np.array([hyperparam_tuning_window(time_series, series_name, 
                                             err_data, tuning_len, opt_var_frac) for tuning_len in window_lens_tuning])
             
-            opt_window_len = window_lens_tuning[AMethod().get_elbow_point(window_lens_tuning, count_segments_window)]
+            opt_window_len = window_lens_tuning[optimal_hyperparameter.AMethod().get_elbow_point(window_lens_tuning, count_segments_window)]
             
             ###########################################
             # Fitting the optimal model
